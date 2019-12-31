@@ -1,6 +1,6 @@
-## AWS ECS + CodePipeline Delopy
+## AWS ECS + CodePipeline Depoly
 
-![](./ecs-with-codepipeline.png)
+![](./ecs-codepipeline-depoly.png)
 
 ## Production
 
