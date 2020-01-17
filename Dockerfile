@@ -5,13 +5,13 @@ FROM node:lts
 LABEL maintainer="KYUNGMIN LIM <ljlm0402@naver.com>"
 
 # Copy Project
-COPY . /aws-ecs-depoly
+COPY . /aws-ecs-deploy
 
 # Update npm
 RUN npm install -g npm
 
 # Work to Project
-WORKDIR /aws-ecs-depoly
+WORKDIR /aws-ecs-deploy
 
 # Install npm
 RUN npm install

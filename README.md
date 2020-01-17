@@ -1,6 +1,6 @@
-## AWS ECS + CodePipeline Depoly
+## AWS ECS + CodePipeline Deploy
 
-![](./ecs-codepipeline-depoly.png)
+![](./ecs-codepipeline-deploy.png)
 
 > Create smart AWS diagrams [Cloudcraft](https://cloudcraft.co/)
 

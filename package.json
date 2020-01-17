@@ -1,5 +1,5 @@
 {
-  "name": "aws-ecs-depoly",
+  "name": "aws-ecs-deploy",
   "version": "0.0.0",
   "private": true,
   "scripts": {
