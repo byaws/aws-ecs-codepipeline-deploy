@@ -5,13 +5,13 @@ FROM node:lts
 LABEL maintainer="KYUNGMIN LIM <ljlm0402@naver.com>"
 
 # Copy Project
-COPY . /aws-ecs-deploy
+COPY . /aws-s3-codepipeline-deploy
 
 # Update npm
 RUN npm install -g npm
 
 # Work to Project
-WORKDIR /aws-ecs-deploy
+WORKDIR /aws-s3-codepipeline-deploy
 
 # Install npm
 RUN npm install
