@@ -22,9 +22,3 @@
 * [Route 53](https://aws.amazon.com/ko/route53/) : 높은 가용성과 확장성이 뛰어난 클라우드 [Domain Name System(DNS)](https://aws.amazon.com/ko/route53/what-is-dns/) 웹 서비스
 
 * [Certificate Manager](https://aws.amazon.com/ko/certificate-manager/) AWS 서비스 및 연결된 내부 리스소에 사용할 공인 및 사설 SSL/TLS(Secure Sockets Layer) 인증서를 손쉽게 프로비저닝, 관리 및 배포를 지원하는 서비스
-
-## Important
-
-1. buildspec.yml : CD 파이프라인의 배포 단계에서는 이 정보를 사용하여 개정된 서비스 작업 정의를 생성한 후 새로운 작업 정의를 사용하도록 서비스를 업데이트합니다.
-
-2. Dockerfile : Dockerfile 및 애플리케이션 소스에 대한 소스 컨트롤 리포지토리
