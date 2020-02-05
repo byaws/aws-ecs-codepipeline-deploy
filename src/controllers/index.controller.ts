@@ -4,7 +4,7 @@ class IndexController {
 
   public index = (req: Request, res: Response, next: NextFunction) => {
     try {
-      res.sendStatus(200);
+      res.status(200).json({ message: 'autuScaling' });
     } catch (error) {
       next(error);
     }
