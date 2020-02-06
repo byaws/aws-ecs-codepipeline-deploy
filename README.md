@@ -22,7 +22,7 @@ Additionally, because ECS has been a foundational pillar for key Amazon services
 
 it can natively integrate with other services such as Amazon Route 53, Secrets Manager, AWS Identity and Access Management (IAM), and Amazon CloudWatch providing you a familiar experience to deploy and scale your containers.
 
-▾ How Amazon ECS works
+▾ Amazon ECS works
 
 <img src='https://github.com/byaws/aws-ecs-codepipeline-deploy/raw/master/screenshots/ecs-works.png' border='0' alt='ecs-works' />
 
@@ -32,7 +32,7 @@ AWS CodePipeline is a fully managed continuous delivery service that helps you a
 
 CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define.
 
-▾ How Amazon CodePipeline works
+▾ Amazon CodePipeline works
 
 <img src='https://github.com/byaws/aws-ecs-codepipeline-deploy/raw/master/screenshots/codepipeline-works.png' border='0' alt='codepipeline-works' />
 
