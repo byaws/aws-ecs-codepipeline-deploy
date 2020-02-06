@@ -1,24 +1,116 @@
-## AWS ECS + CodePipeline Deploy
+<img src='https://github.com/byaws/aws-ecs-codepipeline-deploy/raw/master/screenshots/architecture.png' border='0' alt='architecture' />
 
-![](./ecs-codepipeline-deploy.png)
+Implementation of automated distribution through [aws](https://aws.amazon.com/ko/) product [ecs](https://aws.amazon.com/ko/ecs/) and [codepipeline](https://aws.amazon.com/ko/codepipeline/)
 
-> Create smart AWS diagrams [Cloudcraft](https://cloudcraft.co/)
+> Create smart aws diagrams [Cloudcraft](https://cloudcraft.co/)
 
-## Production
+<br />
 
-* [EC2](https://aws.amazon.com/ko/ec2/) : 안전하고 크기 조정이 가능한 컴퓨팅 파워를 클라우드에서 제공하는 웹 서비스
-    * [Application Load Balancer](https://aws.amazon.com/ko/elasticloadbalancing/) : HTTP 및 HTTPS 트래픽의 로드 밸런싱
+## What is AWS ?
 
-* [Elastic Container Service(ECS)](https://aws.amazon.com/ko/ecs/) : 완전관리형 컨테이너 오케스트레이션 서비스
+Whether you're looking for compute power, database storage, content delivery, or other features with services operated by Amazon, 
 
-* [Elastic Container Registry(ECR)](https://aws.amazon.com/ko/ecr/) : Docker 컨테이너 이미지를 손쉽게 저장, 관리 및 배포할 수 있게 해주는 완전관리형 [Docker](https://aws.amazon.com/ko/docker/) 컨테이너 레지스트리
+AWS has services to help you build sophisticated applications with increased flexibility, scalability, and reliability.
 
-* [CodeBuild](https://aws.amazon.com/ko/codebuild/) : 소스 코드를 컴파일하는 단계부터 테스트 실행 후 소프트웨어 패키지를 개발하여 배포하는 단계까지 마칠 수 있는 완전관리형의 지속적 통합 서비스
+## What is ECS ?
 
-* [CodePipeline](https://aws.amazon.com/ko/codepipeline/) : 빠르고 안정적인 애플리케이션 및 인프라 업데이트를 위해 릴리스 파이프라인을 자동화하는 데 도움이 되는 완전관리형 [지속적 전달](https://aws.amazon.com/ko/devops/continuous-delivery/) 서비스
+Amazon Elastic Container Service (Amazon ECS) is a fully managed container orchestration service. 
 
-* [Identity and Access Management(IAM)](https://aws.amazon.com/ko/iam/) : AWS 서비스와 리소스에 대한 액세스를 안전하게 관리할 수 있습니다.
+Customers such as Duolingo, Samsung, GE, and Cook Pad use ECS to run their most sensitive and mission critical applications because of its security, reliability, and scalability.
 
-* [Route 53](https://aws.amazon.com/ko/route53/) : 높은 가용성과 확장성이 뛰어난 클라우드 [Domain Name System(DNS)](https://aws.amazon.com/ko/route53/what-is-dns/) 웹 서비스
+Additionally, because ECS has been a foundational pillar for key Amazon services, 
 
-* [Certificate Manager](https://aws.amazon.com/ko/certificate-manager/) AWS 서비스 및 연결된 내부 리스소에 사용할 공인 및 사설 SSL/TLS(Secure Sockets Layer) 인증서를 손쉽게 프로비저닝, 관리 및 배포를 지원하는 서비스
+it can natively integrate with other services such as Amazon Route 53, Secrets Manager, AWS Identity and Access Management (IAM), and Amazon CloudWatch providing you a familiar experience to deploy and scale your containers.
+
+▾ How Amazon ECS works
+
+<img src='https://github.com/byaws/aws-ecs-codepipeline-deploy/raw/master/screenshots/ecs-works.png' border='0' alt='ecs-works' />
+
+## What is CodePipeline ?
+
+AWS CodePipeline is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates.
+
+CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define.
+
+▾ How Amazon CodePipeline works
+
+<img src='https://github.com/byaws/aws-ecs-codepipeline-deploy/raw/master/screenshots/codepipeline-works.png' border='0' alt='codepipeline-works' />
+
+## Continuous Deployment with CodePipeline
+
+### Add a Build Specification File to Your Source Repository
+
+CodeBuild to build your Docker image and push the image to Amazon ECR.
+
+Add a `buildspec.yml` file to your source code repository to tell CodeBuild how to do that.
+
+[Details](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html)
+
+▾ buildspec.yml
+
+```bash
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 18
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI={ ECR_URI }
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"{ ECS_SERVICE_CONTAINER }","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+    files: imagedefinitions.json
+```
+
+### Add a DockerFile to Your Source Repository
+
+Create a dockerfile to run in codebuild.
+
+[Dockerfile Refernce](https://docs.docker.com/engine/reference/builder/)
+
+▾ Dockerfile
+
+```bash
+# Version node lts
+FROM node:lts
+
+# Dockerfile manager
+LABEL maintainer="AGUMON <ljlm0402@gmail.com>"
+
+# Copy Project
+COPY . /aws-ecs-codepipeline-deploy
+
+# Install npm latest
+RUN npm install -g npm@latest
+
+# Work to Project
+WORKDIR /aws-ecs-codepipeline-deploy
+
+# Install dependencies
+RUN npm install
+
+# Set process port
+EXPOSE 3000
+
+# Start process
+CMD ["npm", "start"]
+```
