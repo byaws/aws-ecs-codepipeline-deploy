@@ -20,7 +20,9 @@ Customers such as Duolingo, Samsung, GE, and Cook Pad use ECS to run their most 
 
 Additionally, because ECS has been a foundational pillar for key Amazon services, 
 
-it can natively integrate with other services such as Amazon Route 53, Secrets Manager, AWS Identity and Access Management (IAM), and Amazon CloudWatch providing you a familiar experience to deploy and scale your containers.
+it can natively integrate with other services such as Amazon Route 53, Secrets Manager, 
+
+AWS Identity and Access Management (IAM), and Amazon CloudWatch providing you a familiar experience to deploy and scale your containers.
 
 ▾ Amazon ECS works
 
@@ -36,6 +38,22 @@ CodePipeline automates the build, test, and deploy phases of your release proces
 
 <img src='https://github.com/byaws/aws-ecs-codepipeline-deploy/raw/master/screenshots/codepipeline-works.png' border='0' alt='codepipeline-works' />
 
+## What is the difference Instance vs Fargate in ECS ?
+
+* Instance
+
+An ECS container instance is nothing more than an EC2 instance that runs the ECS Container Agent. 
+
+The downside is that you have to scale, monitor, patch, and secure the EC2 instances yourself.
+
+* Fargate
+
+AWS Fargate manages the task execution. No EC2 instances to manage anymore. You pay for running tasks
+
+▾ Amazon ECS vs Faragte
+
+<img src='https://github.com/byaws/aws-ecs-codepipeline-deploy/raw/master/screenshots/ecs-instance-vs-fargate.png' border='0' alt='ecs-instance-vs-fargate' />
+
 ## Continuous Deployment with CodePipeline
 
 ### Add a Build Specification File to Your Source Repository
@@ -44,7 +62,7 @@ CodeBuild to build your Docker image and push the image to Amazon ECR.
 
 Add a `buildspec.yml` file to your source code repository to tell CodeBuild how to do that.
 
-[Details](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html)
+[Developerguide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html)
 
 ▾ buildspec.yml
 
@@ -85,7 +103,7 @@ artifacts:
 
 Create a dockerfile to run in codebuild.
 
-[Dockerfile Refernce](https://docs.docker.com/engine/reference/builder/)
+[Refernce](https://docs.docker.com/engine/reference/builder/)
 
 ▾ Dockerfile
 
