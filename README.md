@@ -1,4 +1,4 @@
-<img src='https://github.com/byaws/aws-ecs-codepipeline-deploy/raw/master/screenshots/architecture.png' border='0' alt='architecture' />
+<img src='https://github.com/byaws/images/raw/master/ecs-codepipeline/architecture.png' border='0' alt='architecture' />
 
 Implementation of automated distribution through [aws](https://aws.amazon.com/ko/) product [ecs](https://aws.amazon.com/ko/ecs/) and [codepipeline](https://aws.amazon.com/ko/codepipeline/)
 
@@ -26,7 +26,7 @@ AWS Identity and Access Management (IAM), and Amazon CloudWatch providing you a 
 
 ▾ Amazon ECS works
 
-<img src='https://github.com/byaws/aws-ecs-codepipeline-deploy/raw/master/screenshots/ecs-works.png' border='0' alt='ecs-works' />
+<img src='https://github.com/byaws/images/raw/master/ecs-codepipeline/ecs-works.png' border='0' alt='ecs-works' />
 
 ## What is CodePipeline ?
 
@@ -36,7 +36,7 @@ CodePipeline automates the build, test, and deploy phases of your release proces
 
 ▾ Amazon CodePipeline works
 
-<img src='https://github.com/byaws/aws-ecs-codepipeline-deploy/raw/master/screenshots/codepipeline-works.png' border='0' alt='codepipeline-works' />
+<img src='https://github.com/byaws/images/raw/master/ecs-codepipeline/codepipeline-works.png' border='0' alt='codepipeline-works' />
 
 ## What is the difference Instance vs Fargate in ECS ?
 
@@ -52,7 +52,7 @@ AWS Fargate manages the task execution. No EC2 instances to manage anymore. You 
 
 ▾ Amazon ECS vs Faragte
 
-<img src='https://github.com/byaws/aws-ecs-codepipeline-deploy/raw/master/screenshots/ecs-instance-vs-fargate.png' border='0' alt='ecs-instance-vs-fargate' />
+<img src='https://github.com/byaws/images/raw/master/ecs-codepipeline/ecs-instance-vs-fargate.png' border='0' alt='ecs-instance-vs-fargate' />
 
 ## Continuous Deployment with CodePipeline
 
