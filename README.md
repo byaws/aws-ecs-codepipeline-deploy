@@ -1,6 +1,8 @@
 <img src='https://github.com/byaws/images/raw/master/ecs-codepipeline/architecture.png' border='0' alt='architecture' />
 
-Implementation of automated distribution through [aws](https://aws.amazon.com/ko/) product [ecs](https://aws.amazon.com/ko/ecs/) and [codepipeline](https://aws.amazon.com/ko/codepipeline/)
+Implementation of automated distribution through [AWS](https://aws.amazon.com/ko/) product [ECS](https://aws.amazon.com/ko/ecs/) to [EC2](https://aws.amazon.com/ko/ec2/) and [CodePipeline](https://aws.amazon.com/ko/codepipeline/)
+
+Notifications over Slack using through [AWS](https://aws.amazon.com/ko/) product [SNS](https://aws.amazon.com/ko/sns) and [Chatbot](https://aws.amazon.com/ko/chatbot/)
 
 > Create smart aws diagrams [Cloudcraft](https://cloudcraft.co/)
 
@@ -28,15 +30,11 @@ AWS Identity and Access Management (IAM), and Amazon CloudWatch providing you a 
 
 <img src='https://github.com/byaws/images/raw/master/ecs-codepipeline/ecs-works.png' border='0' alt='ecs-works' />
 
-## What is CodePipeline ?
+## What is EC2 ?
 
-AWS CodePipeline is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates.
+Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud.
 
-CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define.
-
-▾ Amazon CodePipeline works
-
-<img src='https://github.com/byaws/images/raw/master/ecs-codepipeline/codepipeline-works.png' border='0' alt='codepipeline-works' />
+It provides you with complete control of your computing resources and lets you run on Amazon’s proven computing environment.
 
 ## What is the difference Instance vs Fargate in ECS ?
 
@@ -53,6 +51,16 @@ AWS Fargate manages the task execution. No EC2 instances to manage anymore. You 
 ▾ Amazon ECS vs Faragte
 
 <img src='https://github.com/byaws/images/raw/master/ecs-codepipeline/ecs-instance-vs-fargate.png' border='0' alt='ecs-instance-vs-fargate' />
+
+## What is CodePipeline ?
+
+AWS CodePipeline is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates.
+
+CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define.
+
+▾ Amazon CodePipeline works
+
+<img src='https://github.com/byaws/images/raw/master/ecs-codepipeline/codepipeline-works.png' border='0' alt='codepipeline-works' />
 
 ## Continuous Deployment with CodePipeline
 
@@ -132,3 +140,27 @@ EXPOSE 3000
 # Start process
 CMD ["npm", "start"]
 ```
+
+## What is SNS ?
+
+Amazon Simple Notification Service (SNS) is a highly available, durable, secure, fully managed pub/sub messaging service that enables you to decouple microservices, distributed systems, and serverless applications.
+
+Amazon SNS provides topics for high-throughput, push-based, many-to-many messaging.
+
+▾ Amazon SNS works
+
+<img src='https://github.com/byaws/images/raw/master/ecs-codepipeline/sns-works.png' border='0' alt='sns-works' />
+
+## What is Chatbot ?
+
+AWS Chatbot is an interactive agent that makes it easy to monitor and interact with your AWS resources in your Slack channels and Amazon Chime chat rooms.
+
+AWS Chatbot is currently in beta.
+
+▾ Amazon Chatbot Notifications
+
+<img src='https://github.com/byaws/images/raw/master/ecs-codepipeline/chatbot-notifications.png' border='0' alt='chatbot-notifications' />
+
+▾ Amazon Chatbot Commands
+
+<img src='https://github.com/byaws/images/raw/master/ecs-codepipeline/chatbot-commands.png' border='0' alt='chatbot-commands' />
