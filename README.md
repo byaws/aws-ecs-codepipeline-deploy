@@ -164,3 +164,13 @@ AWS Chatbot is currently in beta.
 ▾ Amazon Chatbot Commands
 
 <img src='https://github.com/byaws/aws-ecs-codepipeline-deploy/raw/images/chatbot-commands.png' border='0' alt='chatbot-commands' />
+
+## Usage charge for this month in ECS
+
+Region: Asia Pacific (Seoul)
+
+t3.small	2	Variable	2 GiB	EBS Only	$0.026 per Hour
+
+▾ Amazon Billing Management
+
+<img src='https://github.com/byaws/aws-ecs-codepipeline-deploy/raw/images/price.png' border='10' alt='price' />
